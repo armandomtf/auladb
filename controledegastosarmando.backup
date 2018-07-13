@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2018-07-13 17:29:31 BRT
+-- Started on 2018-07-13 17:56:38 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -49,9 +49,7 @@ CREATE TABLE cliente (
     nm_razaosocial character varying,
     nm_fantasia character varying,
     ds_email character varying,
-    cod_identificacao integer,
-    tipo_cliente character varying,
-    tp_visivel character(1)
+    cod_identificacao integer
 );
 
 
@@ -111,10 +109,10 @@ ALTER TABLE funcionario OWNER TO postgres;
 
 --
 -- TOC entry 185 (class 1259 OID 33440)
--- Name: ordem; Type: TABLE; Schema: public; Owner: postgres
+-- Name: ordem_serviço; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE ordem (
+CREATE TABLE "ordem_serviço" (
     cd_ordem_servico integer NOT NULL,
     funcionario_cd_funcionario integer,
     cliente_cd_cliente integer,
@@ -124,7 +122,7 @@ CREATE TABLE ordem (
 );
 
 
-ALTER TABLE ordem OWNER TO postgres;
+ALTER TABLE "ordem_serviço" OWNER TO postgres;
 
 --
 -- TOC entry 2162 (class 0 OID 33428)
@@ -132,7 +130,7 @@ ALTER TABLE ordem OWNER TO postgres;
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY cliente (cd_cliente, endereco_cd_endereco, nm_razaosocial, nm_fantasia, ds_email, cod_identificacao, tipo_cliente, tp_visivel) FROM stdin;
+COPY cliente (cd_cliente, endereco_cd_endereco, nm_razaosocial, nm_fantasia, ds_email, cod_identificacao) FROM stdin;
 \.
 
 
@@ -169,10 +167,10 @@ COPY funcionario (cd_funcionario, funcao_cd_funcao, endereco_cd_endereco, nm_fun
 --
 -- TOC entry 2166 (class 0 OID 33440)
 -- Dependencies: 185
--- Data for Name: ordem; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: ordem_serviço; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY ordem (cd_ordem_servico, funcionario_cd_funcionario, cliente_cd_cliente, dt_ordem_servico, vl_total, bool_total) FROM stdin;
+COPY "ordem_serviço" (cd_ordem_servico, funcionario_cd_funcionario, cliente_cd_cliente, dt_ordem_servico, vl_total, bool_total) FROM stdin;
 \.
 
 
@@ -217,7 +215,7 @@ ALTER TABLE ONLY funcionario
 -- Name: pg_ordem; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY ordem
+ALTER TABLE ONLY "ordem_serviço"
     ADD CONSTRAINT pg_ordem PRIMARY KEY (cd_ordem_servico);
 
 
@@ -233,7 +231,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2018-07-13 17:29:32 BRT
+-- Completed on 2018-07-13 17:56:38 BRT
 
 --
 -- PostgreSQL database dump complete
