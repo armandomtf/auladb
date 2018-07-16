@@ -11,12 +11,6 @@ package com.armandomtf;
  */
 public class Cliente {
     private int cliente;
-    int cd_cliente;
-    int endereco_cd_endereco;
-    char nm_razaosocial;
-    char nm_fantasia;
-    char ds_email;
-    
 
     /**
      * @return the cliente
