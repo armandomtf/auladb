@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2018-07-16 17:33:10 BRT
+-- Started on 2018-07-16 17:40:22 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2175 (class 0 OID 0)
+-- TOC entry 2181 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -125,7 +125,7 @@ CREATE TABLE "ordem_serviço" (
 ALTER TABLE "ordem_serviço" OWNER TO postgres;
 
 --
--- TOC entry 2163 (class 0 OID 33428)
+-- TOC entry 2169 (class 0 OID 33428)
 -- Dependencies: 181
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -135,7 +135,7 @@ COPY cliente (cd_cliente, endereco_cd_endereco, nm_razaosocial, nm_fantasia, ds_
 
 
 --
--- TOC entry 2166 (class 0 OID 33437)
+-- TOC entry 2172 (class 0 OID 33437)
 -- Dependencies: 184
 -- Data for Name: endereco; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -145,7 +145,7 @@ COPY endereco (cd_endereco, nm_rua, nr_casa, ds_complemento, nm_bairro, nm_cidad
 
 
 --
--- TOC entry 2165 (class 0 OID 33434)
+-- TOC entry 2171 (class 0 OID 33434)
 -- Dependencies: 183
 -- Data for Name: funcao; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -155,7 +155,7 @@ COPY funcao (cd_funcao, ds_funcao, tp_visivel) FROM stdin;
 
 
 --
--- TOC entry 2164 (class 0 OID 33431)
+-- TOC entry 2170 (class 0 OID 33431)
 -- Dependencies: 182
 -- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -165,7 +165,7 @@ COPY funcionario (cd_funcionario, funcao_cd_funcao, endereco_cd_endereco, nm_fun
 
 
 --
--- TOC entry 2167 (class 0 OID 33440)
+-- TOC entry 2173 (class 0 OID 33440)
 -- Dependencies: 185
 -- Data for Name: ordem_serviço; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -184,7 +184,7 @@ ALTER TABLE ONLY cliente
 
 
 --
--- TOC entry 2045 (class 2606 OID 33477)
+-- TOC entry 2047 (class 2606 OID 33477)
 -- Name: pk_endereco; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -193,7 +193,7 @@ ALTER TABLE ONLY endereco
 
 
 --
--- TOC entry 2043 (class 2606 OID 33479)
+-- TOC entry 2045 (class 2606 OID 33479)
 -- Name: pk_funcao; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -202,7 +202,7 @@ ALTER TABLE ONLY funcao
 
 
 --
--- TOC entry 2041 (class 2606 OID 33481)
+-- TOC entry 2043 (class 2606 OID 33481)
 -- Name: pk_funcionario; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -211,7 +211,7 @@ ALTER TABLE ONLY funcionario
 
 
 --
--- TOC entry 2047 (class 2606 OID 33483)
+-- TOC entry 2050 (class 2606 OID 33483)
 -- Name: pk_ordem; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -220,7 +220,31 @@ ALTER TABLE ONLY "ordem_serviço"
 
 
 --
--- TOC entry 2048 (class 2606 OID 33484)
+-- TOC entry 2040 (class 1259 OID 33494)
+-- Name: fki_funcionario; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_funcionario ON funcionario USING btree (funcao_cd_funcao);
+
+
+--
+-- TOC entry 2041 (class 1259 OID 33500)
+-- Name: fki_funcionario2; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_funcionario2 ON funcionario USING btree (endereco_cd_endereco);
+
+
+--
+-- TOC entry 2048 (class 1259 OID 33506)
+-- Name: fki_ordemservico; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_ordemservico ON "ordem_serviço" USING btree (cliente_cd_cliente);
+
+
+--
+-- TOC entry 2051 (class 2606 OID 33484)
 -- Name: fk_enderecocliente; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -229,7 +253,34 @@ ALTER TABLE ONLY cliente
 
 
 --
--- TOC entry 2174 (class 0 OID 0)
+-- TOC entry 2052 (class 2606 OID 33489)
+-- Name: fk_funcionario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY funcionario
+    ADD CONSTRAINT fk_funcionario FOREIGN KEY (funcao_cd_funcao) REFERENCES funcionario(cd_funcionario);
+
+
+--
+-- TOC entry 2053 (class 2606 OID 33495)
+-- Name: fk_funcionario2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY funcionario
+    ADD CONSTRAINT fk_funcionario2 FOREIGN KEY (endereco_cd_endereco) REFERENCES funcionario(cd_funcionario);
+
+
+--
+-- TOC entry 2054 (class 2606 OID 33501)
+-- Name: fk_ordemservico; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ordem_serviço"
+    ADD CONSTRAINT fk_ordemservico FOREIGN KEY (cliente_cd_cliente) REFERENCES "ordem_serviço"(cd_ordem_servico);
+
+
+--
+-- TOC entry 2180 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -240,7 +291,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2018-07-16 17:33:10 BRT
+-- Completed on 2018-07-16 17:40:22 BRT
 
 --
 -- PostgreSQL database dump complete
