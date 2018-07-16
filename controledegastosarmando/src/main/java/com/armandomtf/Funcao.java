@@ -10,6 +10,34 @@ package com.armandomtf;
  * @author aluno
  */
 public class Funcao {
+
+    /**
+     * @return the acessoRestrito
+     */
+    public boolean isAcessoRestrito() {
+        return acessoRestrito;
+    }
+
+    /**
+     * @param acessoRestrito the acessoRestrito to set
+     */
+    public void setAcessoRestrito(boolean acessoRestrito) {
+        this.acessoRestrito = acessoRestrito;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
     private int funcao;
 
     /**
@@ -25,5 +53,7 @@ public class Funcao {
     public void setFuncao(int funcao) {
         this.funcao = funcao;
     }
-    
+    private boolean acessoRestrito;
+    private String descricao;
+
 }

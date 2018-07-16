@@ -10,6 +10,48 @@ package com.armandomtf;
  * @author aluno
  */
 public class Funcionario {
+
+    /**
+     * @return the nick
+     */
+    public String getNick() {
+        return nick;
+    }
+
+    /**
+     * @param nick the nick to set
+     */
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the senha
+     */
+    public String getSenha() {
+        return senha;
+    }
+
+    /**
+     * @param senha the senha to set
+     */
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     private int funcionario;
 
     /**
@@ -25,5 +67,9 @@ public class Funcionario {
     public void setFuncionario(int funcionario) {
         this.funcionario = funcionario;
     }
+    private String nick;
+    private String nome;
+    private String senha;
+
     
 }

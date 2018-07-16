@@ -5,11 +5,41 @@
  */
 package com.armandomtf;
 
+import java.util.Date;
+
 /**
  *
  * @author aluno
  */
 public class OrdemServico {
+
+    /**
+     * @return the data
+     */
+    public Date getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    /**
+     * @return the valorTotal
+     */
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    /**
+     * @param valorTotal the valorTotal to set
+     */
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
     private int ordemservico;
 
     /**
@@ -25,4 +55,7 @@ public class OrdemServico {
     public void setOrdemservico(int ordemservico) {
         this.ordemservico = ordemservico;
     }
+    private Date data;
+    private Double valorTotal; 
+
 }
